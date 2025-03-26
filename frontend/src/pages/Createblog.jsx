@@ -36,7 +36,7 @@ export default function Createblog() {
         }
       );
 
-      console.log(response.data);
+      
 
       // Reset form
       setFormData({

@@ -1,99 +1,28 @@
+import { useEffect, useState } from "react";
 import Blogcard from "../components/Blogcard";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
-// import React from 'react'
+
 export default function Home() {
-  const data = [
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/200/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/208/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/207/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/206/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/205/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/204/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/203/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/202/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-    {
-      title:
-        "Is it worth investing in real estate ? Advantages and disadvantages",
-      image: "https://picsum.photos/id/201/300/200",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      createdon: "24 Jan, 2024",
-      comments: "0",
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("http://127.0.0.1:8000/api/blog/");
+      setData(response.data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div>
       <Helmet>
         <title>BLOGGER | Home</title>
       </Helmet>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {data.map((x) => (
-          <Blogcard blogData={x} key={x.comments} />
+        {data.map((item) => (
+          <Blogcard blogData={item} key={item.id} />
         ))}
       </div>
     </div>

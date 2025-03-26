@@ -3,12 +3,12 @@
 import { Link, Outlet } from "react-router-dom";
 
 export default function Layout() {
-  const menu = [
-    { text: "Nature", path: "/" },
-    { text: "Travel", path: "/" },
-    { text: "Technology", path: "/" },
-    { text: "Politics", path: "/" },
-  ];
+  // const menu = [
+  //   { text: "Nature", path: "/" },
+  //   { text: "Travel", path: "/" },
+  //   { text: "Technology", path: "/" },
+  //   { text: "Politics", path: "/" },
+  // ];
   return (
     <div>
       {/* <header></header> */}
@@ -18,13 +18,13 @@ export default function Layout() {
             <span className="font-extrabold text-2xl">BOLGGER</span>
           </Link>
           <div className="flex gap-4 items-center justify-center">
-            <ul className="flex gap-4 items-center justify-center">
+            {/* <ul className="flex gap-4 items-center justify-center">
               {menu.map((x) => (
                 <li key={x.path}>
                   <Link className="p-2">{x.text}</Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
             <button className="bg-slate-500 text-white  px-2 py-1 rounded">
               <Link to={"/create"}> + New Post</Link>
             </button>
