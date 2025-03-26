@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Blog() {
   const { id } = useParams();
+  let navigate = useNavigate()
   const [blog, setBlog] = useState({});
-  
 
   useEffect(() => {
     async function fetchdata() {
@@ -17,10 +17,12 @@ export default function Blog() {
     fetchdata();
   }, [id]);
 
-
   async function handleDelete() {
-    console.log(`Delete blog ${id}`);
-    
+    let deleteBlog = await axios.delete(
+      `http://127.0.0.1:8000/api/blog/${id}/`
+    );
+    console.log(deleteBlog.data);
+    navigate('/')
   }
   return (
     <div className="flex justify-center items-center">
@@ -40,7 +42,10 @@ export default function Blog() {
         <div>
           <h2 className="text-2xl mt-2 mb-2">What is Lorem Ipsum?</h2>
           <p>{blog.content}</p>
-          <button onClick={handleDelete} className="mt-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+          <button
+            onClick={handleDelete}
+            className="mt-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
+          >
             Delete
           </button>
         </div>

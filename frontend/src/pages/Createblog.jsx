@@ -3,6 +3,7 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Function to remove HTML tags
 const stripHtmlTags = (html) => {
@@ -11,6 +12,8 @@ const stripHtmlTags = (html) => {
 };
 
 export default function Createblog() {
+  let navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     title: "",
     image: null, // Store file object
@@ -47,6 +50,7 @@ export default function Createblog() {
 
       // Reset file input field
       document.getElementById("fileInput").value = "";
+      navigate('/')
     } catch (error) {
       console.error(error.message);
     }
