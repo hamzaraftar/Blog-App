@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route exect path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Blog />} />
           <Route path="/create" element={<Createblog />} />
         </Route>
       </Routes>
