@@ -25,10 +25,7 @@ const EditBlog = () => {
     fetchBlog();
   }, [id]);
 
-  const handleChange = (e) => {
-    setBlogData({ ...blogData, [e.target.name]: e.target.value });
-  };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -45,23 +42,31 @@ const EditBlog = () => {
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Edit Blog</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">Title</label>
+            <label className="block text-gray-700 font-semibold mb-1">
+              Title
+            </label>
             <input
               type="text"
               name="title"
               value={blogData.title}
-              onChange={handleChange}
+              onChange={(e) =>
+                setBlogData({ ...blogData, title: e.target.value })
+              }
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter title"
               required
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">Content</label>
+            <label className="block text-gray-700 font-semibold mb-1">
+              Content
+            </label>
             <textarea
               name="content"
               value={blogData.content}
-              onChange={handleChange}
+              onChange={(e) =>
+                setBlogData({ ...blogData, content: e.target.value })
+              }
               rows="5"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter blog content"
