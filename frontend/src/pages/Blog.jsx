@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useParams ,useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Blog() {
   const { id } = useParams();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const [blog, setBlog] = useState({});
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Blog() {
       `http://127.0.0.1:8000/api/blog/${id}/`
     );
     console.log(deleteBlog.data);
-    navigate('/')
+    navigate("/");
   }
   return (
     <div className="flex justify-center items-center">
@@ -48,6 +48,11 @@ export default function Blog() {
           >
             Delete
           </button>
+          <Link to={`/edit/${id}`}>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition mx-4">
+              Edit
+            </button>
+          </Link>
         </div>
       </div>
     </div>

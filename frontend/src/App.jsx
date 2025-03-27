@@ -4,6 +4,8 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Createblog from "./pages/Createblog";
+import EditBlog from "./pages/EditBlog";
+
 function App() {
   return (
     <>
@@ -12,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/create" element={<Createblog />} />
+          <Route path="/edit/:id" element={<EditBlog />} /> {/* Add Edit Route */}
         </Route>
       </Routes>
     </>
